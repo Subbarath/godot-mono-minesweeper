@@ -17,6 +17,7 @@ public class Cell : Node2D
         get { return _isMine ; }
         set { SetIsMine(value);}
     }
+    private bool _isFlagged;
     private Grid _parent;
     private bool _isRevealed;
     public bool IsRevealed{
@@ -37,6 +38,7 @@ public class Cell : Node2D
         Position = new Vector2(_x * _cellSize, _y * _cellSize);
         _isRevealed = false;
         _isMine = false;
+        _isFlagged = false;
         _countMines = 0;
         var nbCellMax = _gridSize.x * _gridSize.y ;
     }
@@ -53,7 +55,7 @@ public class Cell : Node2D
 
     public void OnHitBoxClick(Viewport node, InputEvent inputEvent, int shapeIdx){
         if (inputEvent is InputEventMouseButton mouseEvent ){
-            if( (ButtonList)mouseEvent.ButtonIndex == ButtonList.Left && ! mouseEvent.Pressed ){
+            if( (ButtonList)mouseEvent.ButtonIndex == ButtonList.Left && ! mouseEvent.Pressed && !_isFlagged){
                 if(! _parent.GetParent<Main>().IsPaused){
                     if (!RevealCell())
                     {
@@ -62,9 +64,13 @@ public class Cell : Node2D
                     else{
                         _parent.CheckVictory();
                     }
-
                 }
-                GD.Print(this.ToString());
+            }
+            else if( (ButtonList)mouseEvent.ButtonIndex == ButtonList.Right && ! mouseEvent.Pressed  && !IsRevealed){
+                if(! _parent.GetParent<Main>().IsPaused){
+                    _isFlagged = ! _isFlagged;
+                    _cellTexture.Frame = (_isFlagged)?3:0;
+                }
             }
         }
     }

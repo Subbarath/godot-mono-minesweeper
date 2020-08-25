@@ -41,6 +41,7 @@ public class Main : Node2D
     {        
         var userInterface = GetNode<UserInterface>("UserInterface");
         userInterface.MenuButton.Connect("pressed",this,nameof(OnMenuButtonClick));
+        userInterface.ReloadButton.Connect("pressed",this,nameof(OnReloadButtonClick));
 
         userInterface.MineDisplay.Text = _nbMinesMax.ToString();
         _mainCamera = GetNode<Camera2D>("MainCamera");
@@ -53,9 +54,12 @@ public class Main : Node2D
 
     public void OnMenuButtonClick(){
         // smartload menu scene
-        Reload();
     }
 
+    public void OnReloadButtonClick(){
+        // smartload menu scene
+        Reload();
+    }
     public void Reload(){
         GD.Print("reloaded");
         IsPaused = false;

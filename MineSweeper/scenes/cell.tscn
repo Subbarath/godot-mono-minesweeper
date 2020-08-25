@@ -11,7 +11,7 @@ script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
-hframes = 3
+hframes = 4
 
 [node name="NumberOfMines" type="RichTextLabel" parent="."]
 visible = false

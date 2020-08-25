@@ -57,6 +57,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\Button.cs" />
     <Compile Include="classes\Cell.cs" />
     <Compile Include="classes\Grid.cs" />
     <Compile Include="classes\helpers\Extensions.cs" />
