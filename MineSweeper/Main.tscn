@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Grid.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/UserInterface.tscn" type="PackedScene" id=2]
+[ext_resource path="res://classes/Main.cs" type="Script" id=3]
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 3 )
+nbRows = 10
+nbCols = 10
+cellSize = 32
+nbMinesMax = 10
+
+[node name="MainCamera" type="Camera2D" parent="."]
+current = true
+
+[node name="UserInterface" parent="." instance=ExtResource( 2 )]
+
+[node name="Grid" parent="." instance=ExtResource( 1 )]

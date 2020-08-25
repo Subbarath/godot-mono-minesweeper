@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://classes/Grid.cs" type="Script" id=1]
+
+[node name="Grid" type="Node2D"]
+script = ExtResource( 1 )
+sceneCellPath = "res://scenes/cell.tscn"
+nbMinesMax = 5
+
+[node name="Background" type="ColorRect" parent="."]
+margin_left = -160.0
+margin_top = -160.0
+margin_right = 160.0
+margin_bottom = 160.0
+mouse_filter = 2
+color = Color( 0.156863, 0.152941, 0.152941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
