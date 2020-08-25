@@ -43,6 +43,7 @@ public class Main : Node2D
         userInterface.MenuButton.Connect("pressed",this,nameof(OnMenuButtonClick));
 
         userInterface.MineDisplay.Text = _nbMinesMax.ToString();
+        _mainCamera = GetNode<Camera2D>("MainCamera");
 
     }
     public override void _Process(float _delta)
@@ -60,10 +61,7 @@ public class Main : Node2D
         IsPaused = false;
 
         var previousGrid = this.FindChildrenOfType<Grid>()[0];
-        previousGrid.QueueFree();
-
-        var grid = SmartLoader<Grid>("res://scenes/Grid.tscn");
-        AddChild(grid);
+        previousGrid.Restart();
 
         var UI = this.FindChildrenOfType<UserInterface>()[0];
         UI.MineDisplay.Text = NbMinesMax.ToString();

@@ -6,10 +6,10 @@
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 3 )
-nbRows = 10
-nbCols = 10
-cellSize = 32
-nbMinesMax = 10
+_nbRows = 10
+_nbCols = 10
+_cellSize = 32
+_nbMinesMax = 10
 
 [node name="MainCamera" type="Camera2D" parent="."]
 current = true
@@ -17,3 +17,4 @@ current = true
 [node name="UserInterface" parent="." instance=ExtResource( 2 )]
 
 [node name="Grid" parent="." instance=ExtResource( 1 )]
+_sceneCellPath = "res://scenes/cell.tscn"
