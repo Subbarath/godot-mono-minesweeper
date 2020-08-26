@@ -79,7 +79,14 @@ public class Grid : Node2D
         _nbRows = parent.NbRows;
         _nbMinesMax = parent.NbMinesMax;
         _cellSize = parent.CellSize;
-        _grid = new Cell[_nbRows,_nbCols];
+        if (_grid != null &&_grid.Length != 0){
+            foreach(Cell cell in _grid){
+                this.RemoveChild(cell);
+            }
+            Array.Clear(_grid,0,_grid.Length-1);
+        }else{
+            _grid = new Cell[_nbRows,_nbCols];
+        }
         _background = GetNode<ColorRect>("Background");
         for (int i = 0; i < _nbRows; i++)
         {
