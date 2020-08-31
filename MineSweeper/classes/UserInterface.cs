@@ -22,6 +22,11 @@ public class UserInterface : CanvasLayer
     public TextureButton ReloadButton{
         get{return _reloadButton;}
     }
+
+    private Menu _menu;
+    public Menu Menu{
+        get{return _menu;}
+    }
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -35,16 +40,16 @@ public class UserInterface : CanvasLayer
         _mineDisplay = _background.GetNode<Label>("NbMineDisplay");
 
         _background.GetNode<Timer>("Timer").Connect("timeout",this,nameof(OnSecondTimeout));
-
-
+        
+        _menu = GetNode<Menu>("Menu");
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(float delta)
     {
         _viewportSize = GetViewport().Size;        
-        _background.RectPosition = new Vector2(_viewportSize.x /2 - 250,0);
-
+        _background.RectPosition = new Vector2(_viewportSize.x /2 - _background.RectSize.x /2,0);
+        _menu.RectPosition = new Vector2(_viewportSize.x/2-_menu.RectSize.x /2, _viewportSize.y/2 - _menu.RectSize.y /2);
         if(!GetParent<Main>().IsPaused){
             _timeDisplay.Text = $"{_seconds} S";
         }

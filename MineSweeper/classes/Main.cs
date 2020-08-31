@@ -37,13 +37,17 @@ public class Main : Node2D
         get{return _nbMinesMax;}
         set{_nbMinesMax = value;}
     }
+
+    private Menu _menu;
     public override void _Ready()
     {        
         var userInterface = GetNode<UserInterface>("UserInterface");
-        userInterface.MenuButton.Connect("pressed",this,nameof(OnMenuButtonClick));
         userInterface.ReloadButton.Connect("pressed",this,nameof(OnReloadButtonClick));
-
+        userInterface.MenuButton.Connect("pressed",this,nameof(OnMenuButtonClick));
+        userInterface.Menu.Connect("Restarted",this,nameof(Restart));
         userInterface.MineDisplay.Text = _nbMinesMax.ToString();
+
+        _menu = userInterface.Menu;
         _mainCamera = GetNode<Camera2D>("MainCamera");
 
     }
@@ -53,9 +57,9 @@ public class Main : Node2D
     }
 
     public void OnMenuButtonClick(){
-        // smartload menu scene
+        IsPaused = ! IsPaused;
+        _menu.Visible = ! _menu.Visible;
     }
-
     public void OnReloadButtonClick(){
         // smartload menu scene
         Reload();
@@ -63,6 +67,7 @@ public class Main : Node2D
     public void Reload(){
         GD.Print("reloaded");
         IsPaused = false;
+        _menu.Visible = false;
 
         var previousGrid = this.FindChildrenOfType<Grid>()[0];
         previousGrid.Restart();
@@ -70,6 +75,26 @@ public class Main : Node2D
         var UI = this.FindChildrenOfType<UserInterface>()[0];
         UI.MineDisplay.Text = NbMinesMax.ToString();
         UI.Seconds = 0;
+    }
 
+    public void Restart(int nbCols, int nbRows, int nbMines){
+        _nbCols = nbCols;
+        _nbRows = nbRows;
+        _nbMinesMax = nbMines;
+        ZoomCamera();
+        Reload();
+    }
+
+    public void ZoomCamera(){
+        float zoom = 1.0f;
+        if (_nbCols > 10){
+            if(_nbCols<=20){
+                zoom = 1.5f;
+            } else if (_nbCols <= 40){
+                zoom = 2.0f;
+            }
+        }
+
+        _mainCamera.Zoom = new Vector2(zoom,zoom);
     }
 }

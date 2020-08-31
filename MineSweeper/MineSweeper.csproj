@@ -62,6 +62,7 @@
     <Compile Include="classes\Grid.cs" />
     <Compile Include="classes\helpers\Extensions.cs" />
     <Compile Include="classes\Main.cs" />
+    <Compile Include="classes\Menu.cs" />
     <Compile Include="classes\UserInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

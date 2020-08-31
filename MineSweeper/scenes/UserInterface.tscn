@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/graphics/ui_bg.png" type="Texture" id=1]
 [ext_resource path="res://classes/UserInterface.cs" type="Script" id=2]
@@ -9,10 +9,10 @@
 [ext_resource path="res://assets/graphics/ui_button_reload_normal.png" type="Texture" id=7]
 [ext_resource path="res://assets/graphics/ui_button_reload_pressed.png" type="Texture" id=8]
 [ext_resource path="res://assets/font/InterfaceFont.tres" type="DynamicFont" id=9]
+[ext_resource path="res://scenes/Menu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/Button.tscn" type="PackedScene" id=11]
 
 [node name="UserInterface" type="CanvasLayer"]
-layer = -1
 script = ExtResource( 2 )
 
 [node name="Background" type="NinePatchRect" parent="."]
@@ -91,3 +91,8 @@ __meta__ = {
 
 [node name="Timer" type="Timer" parent="Background"]
 autostart = true
+
+[node name="Menu" parent="." instance=ExtResource( 10 )]
+visible = false
+margin_left = 0.0
+margin_right = -618.0

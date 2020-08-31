@@ -84,9 +84,8 @@ public class Grid : Node2D
                 this.RemoveChild(cell);
             }
             Array.Clear(_grid,0,_grid.Length-1);
-        }else{
-            _grid = new Cell[_nbRows,_nbCols];
         }
+        _grid = new Cell[_nbRows,_nbCols];
         _background = GetNode<ColorRect>("Background");
         for (int i = 0; i < _nbRows; i++)
         {
